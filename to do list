@@ -1,0 +1,59 @@
+def display_menu():
+    print("\nTo-Do List Menu:")
+    print("1. View Tasks")
+    print("2. Mark Task as Completed")
+    print("3. Exit")
+
+def view_tasks(task_list):
+    if not task_list:
+        print("No tasks in the list.")
+        return
+    print("\nTasks:")
+    for i, task in enumerate(task_list):
+        status = "Completed" if task["completed"] else "Not Completed"
+        print(f"{i + 1}. {task['task']} - {status}")
+
+def mark_task_as_completed(task_list):
+    view_tasks(task_list)
+    try:
+        task_number = int(input("Enter the task number to mark as completed: ")) - 1
+        if 0 <= task_number < len(task_list):
+            if task_list[task_number]["completed"]:
+                print("Task is already completed.")
+            else:
+                task_list[task_number]["completed"] = True
+                print("Task marked as completed.")
+        else:
+            print("Invalid task number.")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+
+def main():
+    task_list = []
+    print("Welcome to the To-Do List Program!")
+    print("Please enter your tasks. Type 'done' when you are finished.")
+
+    while True:
+        task = input("Enter a task: ")
+        if task.lower() == 'done':
+            break
+        if task.strip():  
+            task_list.append({"task": task, "completed": False})
+        else:
+            print("Task cannot be empty. Please enter a valid task.")
+
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-3): ")
+        if choice == '1':
+            view_tasks(task_list)
+        elif choice == '2':
+            mark_task_as_completed(task_list)
+        elif choice == '3':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please choose a number between 1 and 3.")
+
+if name == "main":
+    main()
