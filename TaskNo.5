@@ -37,7 +37,7 @@ def main():
         task = input("Enter a task: ")
         if task.lower() == 'done':
             break
-        if task.strip():  
+        if task.strip():
             task_list.append({"task": task, "completed": False})
         else:
             print("Task cannot be empty. Please enter a valid task.")
